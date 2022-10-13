@@ -1,0 +1,45 @@
+# Project: Cpp OS
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+RES      = OS_private.res
+OBJ      = main.o System/core/io/soundSystem.o System/core/callsSystem.o System/utils/timeUtils.o System/utils/consoleUtils.o $(RES)
+LINKOBJ  = main.o System/core/io/soundSystem.o System/core/callsSystem.o System/utils/timeUtils.o System/utils/consoleUtils.o $(RES)
+LIBS     = -L"F:/Programas/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -lwininet -lwinmm -lgdi32 -m32
+INCS     = -I"F:/Programas/Dev-Cpp/MinGW64/include" -I"F:/Programas/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Programas/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"F:/Programas/Dev-Cpp/MinGW64/include" -I"F:/Programas/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Programas/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"F:/Programas/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = OS.exe
+CXXFLAGS = $(CXXINCS) -Ofast -m32 -std=gnu++11 -Werror -Wno-write-strings -lgdi32
+CFLAGS   = $(INCS) -Ofast -m32 -std=gnu++11 -Werror
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+System/core/io/soundSystem.o: System/core/io/soundSystem.cpp
+	$(CPP) -c System/core/io/soundSystem.cpp -o System/core/io/soundSystem.o $(CXXFLAGS)
+
+System/core/callsSystem.o: System/core/callsSystem.cpp
+	$(CPP) -c System/core/callsSystem.cpp -o System/core/callsSystem.o $(CXXFLAGS)
+
+System/utils/timeUtils.o: System/utils/timeUtils.cpp
+	$(CPP) -c System/utils/timeUtils.cpp -o System/utils/timeUtils.o $(CXXFLAGS)
+
+System/utils/consoleUtils.o: System/utils/consoleUtils.cpp
+	$(CPP) -c System/utils/consoleUtils.cpp -o System/utils/consoleUtils.o $(CXXFLAGS)
+
+OS_private.res: OS_private.rc 
+	$(WINDRES) -i OS_private.rc -F pe-i386 --input-format=rc -o OS_private.res -O coff 
+
