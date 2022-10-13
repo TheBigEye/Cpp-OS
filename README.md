@@ -34,7 +34,7 @@
      </a>
      <a href="https://github.com/TheBigEye#gh-dark-mode-only"> <!-- dark mode -->
           <img 
-               src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=blue&color=4f4f4f" 
+               src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=f34b7d&color=4f4f4f" 
                Title="Made with C++"  
           />
           <img 
@@ -42,7 +42,7 @@
                Title="Views" 
           />
           <img 
-               src="https://img.shields.io/badge/Dev C%2B%2B-0078D4?style=for-the-badge&logo=replit&logoColor=blue&color=000000" 
+               src="https://img.shields.io/badge/Dev C%2B%2B-0078D4?style=for-the-badge&logo=replit&logoColor=f34b7d&color=000000" 
                Title="Programmed using Orwell Dev-C++ 5.11" 
           />
      </a>
