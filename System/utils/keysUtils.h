@@ -1,5 +1,5 @@
-#ifndef KEYSUTILS_H
-#define KEYSUTILS_H
+#ifndef SYSTEM_UTILS_KEYSUTILS_H_
+#define SYSTEM_UTILS_KEYSUTILS_H_
 
 #include <iostream>
 #include <windows.h>
@@ -117,4 +117,8 @@ const int KEY_BACKSLASH = VK_OEM_5;
 const int KEY_RBRACKET = VK_OEM_6;
 const int KEY_QUOTE = VK_OEM_7;
 
-#endif // KEYSUTILS_H
+bool isKeyPressed(int keyCode) {
+	return (GetKeyState(keyCode) & 0x8000);
+}
+
+#endif /* SYSTEM_UTILS_KEYSUTILS_H_ */

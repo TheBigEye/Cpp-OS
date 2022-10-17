@@ -1,5 +1,5 @@
-#ifndef MATHUTILS_H
-#define MATHUTILS_H
+#ifndef SYSTEM_UTILS_MATHUTILS_H_
+#define SYSTEM_UTILS_MATHUTILS_H_
 
 #include <iostream>
 
@@ -27,4 +27,4 @@ int nextInt(int from, int to) {
     return rand() % (to - from + 1) + from;
 }
 
-#endif // MATHUTILS_H
+#endif /* SYSTEM_UTILS_MATHUTILS_H_ */

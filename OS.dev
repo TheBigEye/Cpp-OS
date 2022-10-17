@@ -28,8 +28,8 @@ Folders=System,System/core,System/core/io,System/programs,System/shell,System/ut
 IncludeVersionInfo=1
 SupportXPThemes=0
 CompilerSet=3
-CompilerSettings=000000c1g0000010000000000
-UnitCount=22
+CompilerSettings=000000d1g0000010000000000
+UnitCount=21
 
 [VersionInfo]
 Major=1
@@ -42,7 +42,7 @@ CompanyName=
 FileVersion=1.0.0.2
 FileDescription=Little DOS simulator written on C++
 InternalName=
-LegalCopyright=Nahuel Senek
+LegalCopyright=
 LegalTrademarks=
 OriginalFilename=
 ProductName=Cpp OS Simulator
@@ -60,27 +60,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit2]
-FileName=System\core\callsSystem.h
-CompileCpp=1
-Folder=System/core
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit3]
-FileName=System\core\mainSystem.h
-CompileCpp=1
-Folder=System/core
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
 FileName=System\programs\command.h
 CompileCpp=1
 Folder=System/programs
@@ -90,8 +70,18 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
+[Unit4]
+FileName=System\shell\colorShell.h
+CompileCpp=1
+Folder=System/shell
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
 [Unit5]
-FileName=System\shell\colorsShell.h
+FileName=System\shell\graphicShell.h
 CompileCpp=1
 Folder=System/shell
 Compile=1
@@ -101,16 +91,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=System\shell\gfxShell.h
-CompileCpp=1
-Folder=System/shell
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit7]
 FileName=System\shell\screenShell.h
 CompileCpp=1
 Folder=System/shell
@@ -120,7 +100,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit8]
+[Unit7]
 FileName=System\utils\consoleUtils.h
 CompileCpp=1
 Folder=System/utils
@@ -130,7 +110,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit9]
+[Unit8]
 FileName=System\utils\mathUtils.h
 CompileCpp=1
 Folder=System/utils
@@ -140,7 +120,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit10]
+[Unit9]
 FileName=System\utils\networkUtils.h
 CompileCpp=1
 Folder=System/utils
@@ -150,7 +130,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit11]
+[Unit10]
 FileName=System\utils\systemUtils.h
 CompileCpp=1
 Folder=System/utils
@@ -160,7 +140,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit12]
+[Unit11]
 FileName=System\utils\timeUtils.h
 CompileCpp=1
 Folder=System/utils
@@ -170,8 +150,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit13]
-FileName=System\core\io\soundSystem.h
+[Unit12]
+FileName=System\core\io\soundHandler.h
 CompileCpp=1
 Folder=System/core/io
 Compile=1
@@ -180,7 +160,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit14]
+[Unit13]
 FileName=System\utils\keysUtils.h
 CompileCpp=1
 Folder=System/utils
@@ -190,8 +170,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit15]
-FileName=System\shell\imgShell.h
+[Unit14]
+FileName=System\shell\imageShell.h
 CompileCpp=1
 Folder=System/shell
 Compile=1
@@ -200,7 +180,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit16]
+[Unit15]
 FileName=System\programs\stars.h
 CompileCpp=1
 Folder=System/programs
@@ -210,8 +190,8 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit17]
-FileName=System\core\io\soundSystem.cpp
+[Unit16]
+FileName=System\core\io\soundHandler.cpp
 CompileCpp=1
 Folder=System/core/io
 Compile=1
@@ -220,17 +200,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit18]
-FileName=System\core\callsSystem.cpp
-CompileCpp=1
-Folder=System/core
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit19]
+[Unit17]
 FileName=System\programs\lines.h
 CompileCpp=1
 Folder=System/programs
@@ -240,17 +210,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit20]
-FileName=System\programs\mesh.h
-CompileCpp=1
-Folder=System/programs
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit21]
+[Unit19]
 FileName=System\utils\timeUtils.cpp
 CompileCpp=1
 Folder=System/utils
@@ -260,10 +220,50 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit22]
+[Unit20]
 FileName=System\utils\consoleUtils.cpp
 CompileCpp=1
 Folder=System/utils
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=System\core\mainKernel.h
+CompileCpp=1
+Folder=System/core
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit18]
+FileName=System\programs\mesh.h
+CompileCpp=1
+Folder=System/programs
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=System\core\mainRender.cpp
+CompileCpp=1
+Folder=System/core
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit21]
+FileName=System\core\mainRender.h
+CompileCpp=1
+Folder=System/core
 Compile=1
 Link=1
 Priority=1000

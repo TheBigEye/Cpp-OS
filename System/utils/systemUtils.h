@@ -1,5 +1,5 @@
-#ifndef SYSTEMUTILS_H
-#define SYSTEMUTILS_H
+#ifndef SYSTEM_UTILS_SYSTEMUTILS_H_
+#define SYSTEM_UTILS_SYSTEMUTILS_H_
 
 #include <iostream>
 #include <fstream>
@@ -31,4 +31,4 @@ string getDisk() {
     return diskSpace;
 }
 
-#endif // SYSTEMUTILS_H
+#endif /* SYSTEM_UTILS_SYSTEMUTILS_H_ */

@@ -1,5 +1,5 @@
-#ifndef STARS_H
-#define STARS_H
+#ifndef SYSTEM_PROGRAMS_STARS_H_
+#define SYSTEM_PROGRAMS_STARS_H_
 
 #include <windows.h>
 #include <iostream>
@@ -9,7 +9,7 @@
 #include <ctime>
 #include <string.h>
 
-#include "../shell/gfxShell.h"
+#include "../shell/graphicShell.h"
 #include "../utils/consoleUtils.h"
 #include "../utils/keysUtils.h"
 
@@ -81,4 +81,4 @@ void drawStars() {
     }
 }
 
-#endif // STARS_H
+#endif /* SYSTEM_PROGRAMS_STARS_H_ */

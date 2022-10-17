@@ -1,5 +1,5 @@
-#ifndef CONSOLEUTILS_H
-#define CONSOLEUTILS_H
+#ifndef SYSTEM_UTILS_CONSOLEUTILS_H_
+#define SYSTEM_UTILS_CONSOLEUTILS_H_
 
 #include <iostream>
 #include <sstream>
@@ -18,5 +18,5 @@ void setConsoleFontSize(int fontSize);
 string getConsoleMousePos();
 void showConsoleMouse(bool showFlag);
 
-#endif // CONSOLEUTILS_H
+#endif /* SYSTEM_UTILS_CONSOLEUTILS_H_ */
 

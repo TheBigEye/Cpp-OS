@@ -1,5 +1,5 @@
-#ifndef TIMEUTILS_H
-#define TIMEUTILS_H
+#ifndef SYSTEM_UTILS_TIMEUTILS_H_
+#define SYSTEM_UTILS_TIMEUTILS_H_
 
 #include <iostream>
 #include <ctime>
@@ -13,5 +13,5 @@ string getCurrentTime();
 string getCurrentTimeHour();
 string getCurrentTimePeriod();
 
-#endif // TIMEUTILS_H
+#endif /* SYSTEM_UTILS_TIMEUTILS_H_ */
 

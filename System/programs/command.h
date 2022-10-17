@@ -1,14 +1,15 @@
-#ifndef COMMAND_H
-#define COMMAND_H
+#ifndef SYSTEM_PROGRAMS_COMMAND_H_
+#define SYSTEM_PROGRAMS_COMMAND_H_
 
 #include <windows.h>
 #include <iostream>
 #include <string.h>
 
-#include "../core/mainSystem.h"
-#include "../core/io/soundSystem.h"
+#include "../core/mainKernel.h"
+#include "../core/mainRender.h"
+#include "../core/io/soundHandler.h"
+#include "../shell/graphicShell.h"
 #include "../shell/screenShell.h"
-#include "../shell/gfxShell.h"
 
 #include "../programs/stars.h"
 #include "../programs/mesh.h"
@@ -16,15 +17,15 @@
 
 using namespace std;
 
-int getCurrentLine();
-bool getRunning();
-void setCurrentLine(int line);
-void addCurrentLine(int line);
-void subCurrentLine(int line);
-void setRunning(bool value);
+int ReGetCurrentLine();
+bool KeGetRunning();
+void ReSetCurrentLine(int line);
+void ReAddCurrentLine(int line);
+void ReSubCurrentLine(int line);
+void KeSetRunning(bool value);
 
-void KRNL_INTERRUPT();
-void KRNL_RETURN();
+void KeInterrupt();
+void KeReturn();
 
 void CMD(string command);
 int OUTPRINT(string command);
@@ -36,14 +37,14 @@ void CMD(string command) {
 	command = toLowercase(command);
 	
 	if (command.length() < 1) { // Check if any command are typed
-		subCurrentLine(1); // Move the prompt to a new line
+		ReSubCurrentLine(1); // Move the prompt to a new line
 
 	} else { // if a command are typed, check the command and execute it
 		if (command == "exit") {
-			setRunning(false);
+			KeSetRunning(false);
 			
 		} else if (startsWith(command, "clear")) {
-			addCurrentLine(64);
+			ReAddCurrentLine(64);
 				
 		} else if (startsWith(command, "print") || startsWith(command, "print ")) {
 			OUTPRINT(command);
@@ -52,31 +53,31 @@ void CMD(string command) {
 			HELP();
 		
 		} else if (command == "stars") {
-			print("Leaving Kernel mode shell ...", 2, getCurrentLine());
+			print("Leaving Kernel mode shell ...", 2, ReGetCurrentLine());
 			Sleep(1000);
-			KRNL_INTERRUPT();
+			KeInterrupt();
 			drawStars();
-			KRNL_RETURN();
+			KeReturn();
 			
 		} else if (command == "lines") {
-			print("Leaving Kernel mode shell ...", 2, getCurrentLine());
+			print("Leaving Kernel mode shell ...", 2, ReGetCurrentLine());
 			Sleep(1000);
-			KRNL_INTERRUPT();
+			KeInterrupt();
 			drawLines();
-			KRNL_RETURN();
+			KeReturn();
 		
 		} else if (command == "mesh") {
-			print("Leaving Kernel mode shell ...", 2, getCurrentLine());
+			print("Leaving Kernel mode shell ...", 2, ReGetCurrentLine());
 			Sleep(1000);
-			KRNL_INTERRUPT();
+			KeInterrupt();
 			drawMesh();
-			KRNL_RETURN();
+			KeReturn();
 		
 		} else {
 			playSound("Assets/Sound/Error.wav", 44100); // Play error sound
 			//Beep(98, 500);
 			//Beep(88, 500);
-			print("ERROR: Command " + command + " not found!", 2, getCurrentLine());
+			print("ERROR: Command " + command + " not found!", 2, ReGetCurrentLine());
 		}
 	}
 }
@@ -86,22 +87,22 @@ int OUTPRINT(string command) {
 	if (startsWith(command, "print ")) {
 		command = replace(command, "print ", "");
 	} else {
-		print("ERROR: missing argument!", 2, getCurrentLine());
+		print("ERROR: missing argument!", 2, ReGetCurrentLine());
 		return 1;
 	}
 	
-	print(command, 2, getCurrentLine());
+	print(command, 2, ReGetCurrentLine());
 	return 0;
 }
 
 int HELP() {
-	print("Help: ---------------------------------------------------------------------", 2, getCurrentLine()); addCurrentLine(1);
-	print("  help                        - Prints this help message                   ", 2, getCurrentLine()); addCurrentLine(1);
-	print("  clear                       - Clears the terminal screen                 ", 2, getCurrentLine()); addCurrentLine(1);
-	print("  print <message>             - Print a output message                     ", 2, getCurrentLine()); addCurrentLine(1);
-	print("  exit                        - End current session                        ", 2, getCurrentLine()); addCurrentLine(1);
-	print("---------------------------------------------------------------------------", 2, getCurrentLine());
+	print("Help: ---------------------------------------------------------------------", 2, ReGetCurrentLine()); ReAddCurrentLine(1);
+	print("  help                        - Prints this help message                   ", 2, ReGetCurrentLine()); ReAddCurrentLine(1);
+	print("  clear                       - Clears the terminal screen                 ", 2, ReGetCurrentLine()); ReAddCurrentLine(1);
+	print("  print <message>             - Print a output message                     ", 2, ReGetCurrentLine()); ReAddCurrentLine(1);
+	print("  exit                        - End current session                        ", 2, ReGetCurrentLine()); ReAddCurrentLine(1);
+	print("---------------------------------------------------------------------------", 2, ReGetCurrentLine());
 	return 0;
 }
 
-#endif // COMMAND_H
+#endif /* SYSTEM_PROGRAMS_COMMAND_H_ */

@@ -1,5 +1,5 @@
-#ifndef IMGSHELL_H
-#define IMGSHELL_H
+#ifndef SYSTEM_SHELL_IMAGESHELL_H_
+#define SYSTEM_SHELL_IMAGESHELL_H_
 
 #include <iostream>
 #include <fstream>
@@ -112,4 +112,4 @@ void renderColorImage(string filename, int x, int y, int colorA = -1, int colorB
     fclose(file);
 }
 
-#endif // IMGSHELL_H
+#endif /* SYSTEM_SHELL_IMAGESHELL_H_ */

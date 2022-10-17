@@ -1,5 +1,5 @@
-#ifndef MESH_H
-#define MESH_H
+#ifndef SYSTEM_PROGRAMS_MESH_H_
+#define SYSTEM_PROGRAMS_MESH_H_
 
 #include <windows.h>
 #include <iostream>
@@ -9,7 +9,7 @@
 #include <ctime>
 #include <string.h>
 
-#include "../shell/gfxShell.h"
+#include "../shell/graphicShell.h"
 #include "../utils/consoleUtils.h"
 #include "../utils/keysUtils.h"
 
@@ -61,7 +61,7 @@ void drawMesh() {
 	            count++;
 	            
 	            stringstream cs; cs << count; string strCount = cs.str();
-        		drawString(strCount, 127 - strCount.size(), 33);
+        	    drawString(strCount, 127 - strCount.size(), 33);
 	        }
 	
 	        x = 0;
@@ -70,4 +70,4 @@ void drawMesh() {
 	}
 }
 
-#endif // MESH_H
+#endif /* SYSTEM_PROGRAMS_MESH_H_ */

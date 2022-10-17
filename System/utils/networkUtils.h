@@ -1,5 +1,5 @@
-#ifndef NETWORKUTILS_H
-#define NETWORKUTILS_H
+#ifndef SYSTEM_UTILS_NETWORKUTILS_H_
+#define SYSTEM_UTILS_NETWORKUTILS_H_
 
 #include <iostream>
 #include <windows.h>
@@ -14,4 +14,4 @@ bool isNetworkConnected() {
 	return isConnected;
 }
 
-#endif // NETWORKUTILS_H
+#endif /* SYSTEM_UTILS_NETWORKUTILS_H_ */

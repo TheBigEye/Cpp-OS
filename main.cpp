@@ -2,7 +2,8 @@
 * OS Simulator
 *
 * CHANGELOG:
-	03/10/2022 Added renderColorImage, do the same but can replace the image colors JEJE
+*	17/10/2022 Splitted mainSystem.h with mainKernel.h and mainRender.h
+*	03/10/2022 Added renderColorImage, do the same but can replace the image colors JEJE
 *	02/10/2022 Added renderImage to print bmp images on the console :) (OH SHIT, THIS IS EPIC!)
 *	01/10/2022 Added a Interrupt function and a basic program
 *	27/08/2022 Added RAM and Disk counters to the Taskbar, also added sounds support
@@ -20,15 +21,15 @@
 #include <stdio.h>
 
 // System mainloop
-#include "System/core/mainSystem.h"
+#include "System/core/mainKernel.h"
 
 using namespace std;
 
 void charsTest();
 void colorsTest();
 
-int main() {
-	MAIN_KRNL(); // Start system
+int main(int argc, char *argv[]) {
+	MAIN_SYS(); // Start system
 	
 	// colorsTest();
 	// charsTest();

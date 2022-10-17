@@ -1,5 +1,5 @@
-#ifndef SCREENSHELL_H
-#define SCREENSHELL_H
+#ifndef SYSTEM_SHELL_SCREENSHELL_H_
+#define SYSTEM_SHELL_SCREENSHELL_H_
 
 #include <iostream>
 #include <string.h>
@@ -15,12 +15,11 @@ string toLowercase(string str) {
 }
 
 string toUppercase(string str) {
-    for(int i = 0; i < str.length(); i++) {
+    for (int i = 0; i < str.length(); i++) {
         str[i] = toupper(str[i]);
     }
     return str;
 }
-
 
 char getCharFrom(int hex) {
     return (char)hex;
@@ -35,7 +34,6 @@ char getCharFrom(string oct) {
     
     return (char)dec;
 }
-
 
 bool startsWith(string str, string start) {
     if (str.length() < start.length()) {
@@ -99,5 +97,5 @@ void clearScreen() {
     SetConsoleCursorPosition(hOut, topLeft);
 }
 
-#endif // SCREENSHELL_H
+#endif /* SYSTEM_SHELL_SCREENSHELL_H_ */
 

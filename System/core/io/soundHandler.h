@@ -1,5 +1,5 @@
-#ifndef SOUNDSYSTEM_H
-#define SOUNDSYSTEM_H
+#ifndef SYSTEM_CORE_IO_SOUNDHANDLER_H_
+#define SYSTEM_CORE_IO_SOUNDHANDLER_H_
 
 #include <iostream>
 #include <fstream>
@@ -13,4 +13,4 @@ using namespace std;
 
 void playSound(string fileName, DWORD sampleRate);
 
-#endif // SOUNDSYSTEM_H
+#endif /* SYSTEM_CORE_IO_SOUNDHANDLER_H_ */

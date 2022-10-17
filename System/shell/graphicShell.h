@@ -1,7 +1,5 @@
-#ifndef GFXSHELL_H
-#define GFXSHELL_H
-
-#define UNICODE
+#ifndef SYSTEM_SHELL_GRAPHICSHELL_H_
+#define SYSTEM_SHELL_GRAPHICSHELL_H_
 
 #include <sstream>
 #include <windows.h>
@@ -10,8 +8,7 @@
 #include <string.h>
 #include <algorithm>
 
-#include "../shell/screenShell.h"
-#include "../shell/colorsShell.h"
+#include "../shell/colorShell.h"
 
 using namespace std;
 
@@ -19,8 +16,7 @@ using namespace std;
 // NOTE: using the DOS: occidental european Consolas font
 
 void setCursorPos(int x, int y) {
-	
-	// Get the current console
+    // Get the current console
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	// Change the console cursor position
@@ -32,11 +28,8 @@ void setCursorPos(int x, int y) {
 	SetConsoleCursorPosition(hConsole, cursorPos);
 }
 
-// DRAWWINDOW() ---------------------------------------------------------------------------------------------------------------
-
-void drawWindow(int x, int y, int width, int height, string title, int bordersColor, int backgroundColor, int titleColor, int mainColor) {
-
-	// Get the current console
+void drawWindow(int x, int y, int width, int height, std::string title, int bordersColor, int backgroundColor, int titleColor, int mainColor) {
+    // Get the current console
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	int i = 0; int j = 0; 
@@ -75,11 +68,8 @@ void drawWindow(int x, int y, int width, int height, string title, int bordersCo
 	SetConsoleTextAttribute(hConsole, mainColor);
 }
 
-// ----------------------------------------------------------------------------------------------------------------------------
-
-void drawBar(int x, int y, int width, int height, string title, int bordersColor, int backgroundColor, int titleColor, int mainColor) { 
-
-	// Get the current console
+void drawBar(int x, int y, int width, int height, std::string title, int bordersColor, int backgroundColor, int titleColor, int mainColor) {
+    // Get the current console
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	int i = 0; 
@@ -118,9 +108,7 @@ void drawBar(int x, int y, int width, int height, string title, int bordersColor
 	SetConsoleTextAttribute(hConsole, mainColor);
 }
 
-// DRAWSTRING() ---------------------------------------------------------------------------------------------------------------
-
-void drawString(string str, int x, int y, int backgroundColor, int mainColor) {
+void drawString(std::string str, int x, int y, int backgroundColor, int mainColor) {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	
 	// Clean the old text in the background
@@ -144,8 +132,6 @@ void drawString(string str, int x, int y) {
 	drawString(str, x, y, NORMAL_NORMAL, NORMAL_NORMAL);
 }
 
-// ----------------------------------------------------------------------------------------------------------------------------
-
 template <typename Any>
 void print(Any str, int x, int y) {
 	setCursorPos(x, y);
@@ -162,14 +148,4 @@ void putChar(string c, int x, int y, int color) {
     cout << c;
 }
 
-void drawRandomCharBorders(int x, int y, int width, int height) {
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	
-	for (int i = x; i < width; i++) {
-		SetConsoleTextAttribute(hConsole, rand() % 16);
-		setCursorPos(i , y); cout << (char)(rand() % (255 - 32) + 32);
-		setCursorPos(i, height); cout << (char)(rand() % (255 - 32) + 32);
-	}
-}
-
-#endif // GFXSHELL_H
+#endif /* SYSTEM_SHELL_GRAPHICSHELL_H_ */

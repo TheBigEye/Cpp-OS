@@ -1,5 +1,5 @@
-#ifndef LINES_H
-#define LINES_H
+#ifndef SYSTEM_PROGRAMS_LINES_H_
+#define SYSTEM_PROGRAMS_LINES_H_
 
 #include <windows.h>
 #include <iostream>
@@ -9,41 +9,49 @@
 #include <ctime>
 #include <string.h>
 
-#include "../shell/gfxShell.h"
+#include "../shell/graphicShell.h"
 #include "../utils/consoleUtils.h"
 #include "../utils/keysUtils.h"
 
 using namespace std;
 
-bool lTrueColor = false;
+class Lines {
+	public:
+		void setPixel(int x, int y, COLORREF color) {
+		    HDC hdc = GetDC(GetConsoleWindow());
+		    SetPixel(hdc, x, y, color);
+		    ReleaseDC(GetConsoleWindow(), hdc);
+		}
+		
+		void draw(int x1, int y1, int x2, int y2, COLORREF color) {
+		    int dx = x2 - x1;
+		    int dy = y2 - y1;
+		    
+		    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
+		    float xInc = dx / (float) steps;
+		    float yInc = dy / (float) steps;
+		    
+		    float x = x1;
+		    float y = y1;
+		    
+		    for (int i = 0; i <= steps; i++) {
+		        setPixel(x, y, color);
+		        x += xInc;
+		        y += yInc;
+		    }
+		}
+};
 
-void lSetPixel(int x, int y, COLORREF color) {
-    HDC hdc = GetDC(GetConsoleWindow());
-    SetPixel(hdc, x, y, color);
-    ReleaseDC(GetConsoleWindow(), hdc);
-}
 
-void drawLine(int x1, int y1, int x2, int y2, COLORREF color) {
-    int dx = x2 - x1;
-    int dy = y2 - y1;
-    int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-    float xInc = dx / (float) steps;
-    float yInc = dy / (float) steps;
-    float x = x1;
-    float y = y1;
-    for (int i = 0; i <= steps; i++) {
-        lSetPixel(x, y, color);
-        x += xInc;
-        y += yInc;
-    }
-}
+void drawLines() {
 
-void drawLines(){
+	Lines Pencil;
 	
 	system("cls");
 	system("color 0F");
 	
 	showConsoleCursor(false);
+	bool trueColor = false;
 	
     int x1 = rand() % 1000;
     int y1 = rand() % 500;
@@ -53,23 +61,23 @@ void drawLines(){
     int color = 0;
     int count = 0;
     
-    while (!(GetKeyState(KEY_SHIFT) & 0x8000)) {
+    while (!isKeyPressed(KEY_SHIFT)) {
     	
 		if (count >= 360) {
 			system("cls");
-			if (lTrueColor == false) {
-				lTrueColor = true;
+			if (trueColor == false) {
+				trueColor = true;
 			} else {
-				lTrueColor = false;
+				trueColor = false;
 			}
 			count = 0;
 		}
         
-        if (lTrueColor == false) {
+        if (trueColor == false) {
         	color = rand() % 16777215;
-        	drawLine(x1, y1, x2, y2, color);
+        	Pencil.draw(x1, y1, x2, y2, color);
 		} else {
-			drawLine(x1, y1, x2, y2, RGB(rand() % 256, rand() % 256, rand() % 256));
+			Pencil.draw(x1, y1, x2, y2, RGB(rand() % 256, rand() % 256, rand() % 256));
 		}
         
         x1 = x2;
@@ -86,4 +94,4 @@ void drawLines(){
     }
 }
 
-#endif // LINES_H
+#endif /* SYSTEM_PROGRAMS_LINES_H_ */
