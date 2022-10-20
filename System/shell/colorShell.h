@@ -4,8 +4,6 @@
 #include <iostream>
 
 // BACKGROUND COLOR _ FOREGROUND COLOR
-
-
 const int NORMAL_NORMAL = 7;
 
 const int BLACK_BLUE = 1;

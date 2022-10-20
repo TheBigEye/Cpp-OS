@@ -1,5 +1,5 @@
-#ifndef SYSTEM_UTILS_KEYSUTILS_H_
-#define SYSTEM_UTILS_KEYSUTILS_H_
+#ifndef SYSTEM_UTILS_KEYBOARDUTILS_H_
+#define SYSTEM_UTILS_KEYBOARDUTILS_H_
 
 #include <iostream>
 #include <windows.h>
@@ -121,4 +121,4 @@ bool isKeyPressed(int keyCode) {
 	return (GetKeyState(keyCode) & 0x8000);
 }
 
-#endif /* SYSTEM_UTILS_KEYSUTILS_H_ */
+#endif /* SYSTEM_UTILS_KEYBOARDUTILS_H_ */

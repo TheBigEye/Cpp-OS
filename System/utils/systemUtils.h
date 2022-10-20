@@ -9,26 +9,26 @@
 #include <cstdlib>
 #include <ctime>
 
-using namespace std;
-
-string getRAM() {
+std::string getRAM() {
     MEMORYSTATUSEX status;
     status.dwLength = sizeof(status);
     GlobalMemoryStatusEx(&status);
-    string ram = to_string(status.dwMemoryLoad);
+    std::string ram = std::to_string(status.dwMemoryLoad);
     return ram;
 }
 
-string getDisk() {
+std::string getDisk() {
     ULARGE_INTEGER free_bytes_available, total_number_of_bytes, total_number_of_free_bytes;
     GetDiskFreeSpaceEx(NULL, &free_bytes_available, &total_number_of_bytes, &total_number_of_free_bytes);
-    
+
     int usedSpace = (total_number_of_bytes.QuadPart / (1024 * 1024 * 1024)) - (total_number_of_free_bytes.QuadPart / (1024 * 1024 * 1024));
-    int availibleSpace = total_number_of_bytes.QuadPart / (1024 * 1024 * 1024);
+    // int availibleSpace = total_number_of_bytes.QuadPart / (1024 * 1024 * 1024);
     int totalSpace = total_number_of_bytes.QuadPart / (1024 * 1024 * 1024);
 
-    string diskSpace = to_string(usedSpace) + " GBs/" + to_string(totalSpace) + " GBs";
+    std::string diskSpace = std::to_string(usedSpace) + " GBs/" + std::to_string(totalSpace) + " GBs";
     return diskSpace;
 }
+
+
 
 #endif /* SYSTEM_UTILS_SYSTEMUTILS_H_ */

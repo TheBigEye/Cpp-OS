@@ -7,16 +7,12 @@
 #include <windows.h>
 #include <winuser.h>
 
-using namespace std;
-
 void setConsoleSize(int width, int height);
 void setConsoleResizable(bool resizable);
 void setConsolePosition(int x, int y);
-void setConsoleBlockCursor();
 void showConsoleCursor(bool showFlag);
 void setConsoleFontSize(int fontSize);
-string getConsoleMousePos();
-void showConsoleMouse(bool showFlag);
+std::string getConsoleMousePos();
 
 #endif /* SYSTEM_UTILS_CONSOLEUTILS_H_ */
 

@@ -51,7 +51,7 @@ void playSound(string fileName, DWORD sampleRate) {
     while(!(header.dwFlags & WHDR_DONE)){
         Sleep(100);
     }
-    
+
     waveOutUnprepareHeader(hWaveOut, &header, sizeof(WAVEHDR));
     waveOutClose(hWaveOut);
     delete[] buffer;

@@ -10,8 +10,9 @@
 #include <string.h>
 
 #include "../shell/graphicShell.h"
+#include "../shell/screenShell.h"
 #include "../utils/consoleUtils.h"
-#include "../utils/keysUtils.h"
+#include "../utils/keyboardUtils.h"
 
 using namespace std;
 
@@ -34,24 +35,19 @@ void drawStar(int x, int y, int size, COLORREF color) {
 }
 
 void drawStars() {
-	
-	system("cls");
+
+	clearScreen();
 	system("color 0F");
-	
+
 	showConsoleCursor(false);
-	
-    int x = 8;
-    int y = 8;
-    
-    int size = 10;
-    int color = 0;
+
     int count = 0;
-    
-    // If press SHIFT so interrupts the program
+
+    // If press SHIFT interrupts the program
     while (!(GetKeyState(KEY_SHIFT) & 0x8000)) {
-    	
+
         if (count >= 360) {
-            system("cls");
+            clearScreen();
             if (sTrueColor == false) {
             	sTrueColor = true;
             } else {
@@ -59,24 +55,24 @@ void drawStars() {
 			}
             count = 0;
         }
-        
-        x = rand() % 1024;
-        y = rand() % 512;
-        
-        size = rand() % 20 + 2;
-        
+
+        int x = rand() % 1024;
+        int y = rand() % 512;
+
+        int size = rand() % 20 + 2;
+
         if (sTrueColor == false) {
-        	color = rand() % 16777215;
+        	int color = rand() % 16777215;
         	drawStar(x, y, size, color);
 		} else {
 			drawStar(x, y, size, RGB(rand() % 256, rand() % 256, rand() % 256));
 		}
-        
+
         count++;
-        
+
         stringstream cs; cs << count; string strCount = cs.str();
         drawString(strCount, 127 - strCount.size(), 33);
-        
+
         Sleep(100);
     }
 }
