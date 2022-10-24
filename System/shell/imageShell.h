@@ -3,7 +3,12 @@
 
 #include <iostream>
 
-void renderImage(std::string filename, int x, int y);
-void renderColorImage(std::string filename, int x, int y, int colorA, int colorB);
+class Render {
+	public:
+		static void image(std::string filename, int x, int y);
+		static void imageEx(std::string filename ,int x, int y, int colorA, int colorB, int brightness, bool showBorders);
+		static void imageEx(std::string filename, int x, int y, int colorA, int colorB, int brightness);
+		static void imageEx(std::string filename, int x, int y, int colorA, int colorB);
+};
 
 #endif /* SYSTEM_SHELL_IMAGESHELL_H_ */

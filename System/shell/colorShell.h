@@ -6,6 +6,7 @@
 // BACKGROUND COLOR _ FOREGROUND COLOR
 const int NORMAL_NORMAL = 7;
 
+const int BLACK_BLACK = 0;
 const int BLACK_BLUE = 1;
 const int BLACK_GREEN = 2;
 const int BLACK_AQUA = 3;

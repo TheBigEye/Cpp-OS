@@ -2,22 +2,22 @@
 
 #include <conio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <cstring>
 #include <windows.h>
 #include <stdio.h>
-#include <time.h>
+#include <ctime>
 
 #include <algorithm>
 #include <sstream>
 
 #include "mainRender.h"
 
+#include "io/inputHandler.h"
 #include "../programs/command.h"
 #include "../shell/colorShell.h"
 #include "../shell/graphicShell.h"
 #include "../shell/screenShell.h"
 #include "../utils/consoleUtils.h"
-#include "../utils/keyboardUtils.h"
 
 using namespace std;
 
@@ -25,7 +25,7 @@ const int SCREEN_WIDTH = ReGetConsoleWidth();
 const int SCREEN_HEIGHT = ReGetConsoleHeight();
 
 // Kernel tick updates delay
-const int KERNEL_TIME = 250; // 0.3 secs
+const int KERNEL_TIME = 1000; // 0.3 secs
 
 // Variables
 bool running = false;
@@ -52,55 +52,66 @@ void KeSetRunning(bool value) {
 
 // ----------------------------------------------------------------------------------------------------------------------------
 
-void KeDelay(unsigned int milliseconds) {
-    clock_t ticks1, ticks2;
-    unsigned int tic1 = 0,tic2 = 0,tick = 0;
+void KeDelay(int milliseconds) {
+    long pause;
+    clock_t now, then;
 
-    ticks1 = clock();
-    while(tick < milliseconds) {
-        ticks2 = clock();
-        tic1 = ticks2 / CLOCKS_PER_SEC - ticks1;
-        tic2 = ticks1 / CLOCKS_PER_SEC;
-        tick = ticks2 - ticks1;
+    pause = milliseconds * (CLOCKS_PER_SEC / 1000);
+    now = then = clock();
+    while((now - then) < pause) {
+        now = clock();
     }
-    ticks2 = clock();
 }
 
-void KeKeyInterrupt() {
-	print("-- HANDLED INTERRUPT --", 2, ReGetCurrentLine() + 1);
-	KeSetRunning(false); // Interrupt the loop
 
-	// Perform the exit
-	setCursorPos(2, ReGetCurrentLine() + 2);
-	cin.get();
-	KeStop();
+void KeKeyInterrupt() {
+    if (KeGetRunning() == true) {
+        print("-- HANDLED INTERRUPT --", 2, ReGetCurrentLine() + 1);
+        KeSetRunning(false); // Interrupt the loop
+
+        // Perform the exit
+        setCursorPos(2, ReGetCurrentLine() + 2);
+        cin.get();
+        KeStop();
+    }
 }
 
 void KeInterrupt() {
+    clearScreen();
 	KeSetRunning(false);
 }
 
 void KeReturn() {
-	KeSetRunning(true);
 	ReRedrawGraphics();
+	KeSetRunning(true);
 }
 
 // ----------------------------------------------------------------------------------------------------------------------------
 
+
 void KERNEL() {
-	while(!kbhit() && KeGetRunning() == true) { // While any key isn't pressed
 
-		// IF shift key pressed, INTERRUPT THE SYSTEM
-		if (GetKeyState(KEY_SHIFT) & 0x8000) { // 0x8000 Check if  is high-order bits is set (1 << 15)
-			KeKeyInterrupt();
-		}
+	while(!Input::isKeyPressed() && KeGetRunning() == true) { // While any key isn't pressed
 
-		RENDER();
+        // If shift pressed, INTERRUPT THE SYSTEM
+        if (Input::getKey(VK_SHIFT)) {
+            KeKeyInterrupt();
+        }
 
-		KeDelay(KERNEL_TIME); // Make a 1 secs delay to the code
-	}
+        // if mouse is positionated on internet icon and press ctrl, redraw all
+        if (Input::getMouse(875, 895, 450, 500, VK_CONTROL)) {
+            ReRedrawGraphics();
+        }
+
+        RENDER();
+
+        KeDelay(KERNEL_TIME); // Make a 1 secs delay to the code
+        //Sleep(1/60.0f * 1000.0f);
+    }
 }
 
+
+// @brief The system mainloop :)
 void MAIN_SYS() {
 
 	KeSetRunning(true); // ENABLE RUN EVERYTHING
@@ -110,7 +121,7 @@ void MAIN_SYS() {
 	setConsoleSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 	setConsoleResizable(false);
 
-	// renderColorImage("Assets/logo.bmp", (WIDTH * 3) + 75, (HEIGHT * 4) -36, 0x00ff00, -2);
+	// Render::mageEx("Assets/logo.bmp", (WIDTH * 3) + 75, (HEIGHT * 4) -36, 0x00ff00, -2);
 	// Sleep(2000); // Sleep thread for 2 secs
 
 	ReDrawGraphics(); // Draw graphics
@@ -122,8 +133,6 @@ void MAIN_SYS() {
 		if (ReGetCurrentLine() >= (SCREEN_HEIGHT - 6)) {
 			ReRedrawGraphics();
 		} else {
-			// Command line interpreter
-			drawString(ReGetConsolePrompt(), 2, ReGetCurrentLine(), LIGHTBLUE_LIGHTWHITE, LIGHTBLUE_LIGHTWHITE);
 			KERNEL();
 
 			getline(cin, currentCommand);

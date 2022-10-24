@@ -1,5 +1,12 @@
-#include <iostream>
 #include "soundHandler.h"
+
+#include <iostream>
+#include <windows.h>
+#include <fstream>
+#include <cstring>
+#include <conio.h>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 

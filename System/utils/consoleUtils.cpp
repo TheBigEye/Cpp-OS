@@ -1,5 +1,10 @@
-#include <iostream>
 #include "consoleUtils.h"
+
+#include <iostream>
+#include <sstream>
+#include <string.h>
+#include <windows.h>
+#include <winuser.h>
 
 using namespace std;
 
@@ -81,14 +86,28 @@ void setConsoleFontSize(int fontSize) {
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
 }
 
+int getConsoleMouseX() {
+    POINT p;
+    GetCursorPos(&p);
+    ScreenToClient(GetConsoleWindow(), &p);
+    return int(p.x);
+}
+
+int getConsoleMouseY() {
+    POINT p;
+    GetCursorPos(&p);
+    ScreenToClient(GetConsoleWindow(), &p);
+    return int(p.y);
+}
+
 /**
  * Get and return the current mouse position (x y) on the console screen.
  */
 string getConsoleMousePos() {
-    POINT p;
-    GetCursorPos(&p);
-    ScreenToClient(GetConsoleWindow(), &p);
-    stringstream sh; sh << "x: " << int(p.x) << " y: " << int(p.y); string strMousePos = sh.str();
+    stringstream sh;
+    sh << "x: " << getConsoleMouseX() << " y: " << getConsoleMouseY();
+    string strMousePos = sh.str();
     return strMousePos;
 }
+
 

@@ -1,10 +1,13 @@
-#ifndef SYSTEM_UTILS_KEYBOARDUTILS_H_
-#define SYSTEM_UTILS_KEYBOARDUTILS_H_
+#include "inputHandler.h"
 
 #include <iostream>
+#include <conio.h>
 #include <windows.h>
+#include <ctime>
 
-const int KEY_SHIFT = VK_SHIFT;
+#include "../../utils/consoleUtils.h"
+
+const int KEY_SHIFT = 0x10;
 const int KEY_CTRL = VK_CONTROL;
 const int KEY_ALT = VK_MENU;
 const int KEY_ENTER = VK_RETURN;
@@ -117,8 +120,54 @@ const int KEY_BACKSLASH = VK_OEM_5;
 const int KEY_RBRACKET = VK_OEM_6;
 const int KEY_QUOTE = VK_OEM_7;
 
-bool isKeyPressed(int keyCode) {
-	return (GetKeyState(keyCode) & 0x8000);
+const int MOUSE_B1 = 0x01; // Mouse left click
+const int MOUSE_B2 = 0x02; // Mouse right click
+const int MOUSE_B3 = 0x04; // Mouse middle click
+
+/**
+* Returns a boolean value if the mouse position and button presses match the arguments.
+*
+* @param xa The point A where the X tracking of the mouse will start.
+* @param xb The point B where the X mouse tracking will end.
+* @param ya The point A where the Y tracking of the mouse will start.
+* @param xb The point B where the Y mouse tracking will end.
+* @param buttonCode The button that should be pressed between these positions.
+* @return
+        False: if the given conditions are not met.
+        True: if all conditions are met
+*/
+bool Input::getMouse(int xa, int xb, int ya, int yb, int buttonCode) {
+    // Check mouse position and buttons events
+    if ((getConsoleMouseX() >= xa && getConsoleMouseX() <= xb) && (getConsoleMouseY() >= ya && getConsoleMouseY() <= yb) && (GetAsyncKeyState(buttonCode) && 0x8000)) {
+        return true;
+    }
+    return false;
 }
 
-#endif /* SYSTEM_UTILS_KEYBOARDUTILS_H_ */
+bool Input::getMouse(int xa, int xb, int ya, int yb) {
+    // Check mouse position and buttons events
+    if ((getConsoleMouseX() >= xa && getConsoleMouseX() <= xb) && (getConsoleMouseY() >= ya && getConsoleMouseY() <= yb)) {
+        return true;
+    }
+    return false;
+}
+
+/**
+* Returns a boolean value if any specified key is being pressed.
+*
+* @param keyCode The code of the keyboard key that will be tracked.
+*/
+bool Input::getKey(int keyCode) {
+    if (GetAsyncKeyState(keyCode) && 0x8000) { // 0x8000 Check if  is high-order bits is set (1 << 15)
+        return true;
+    }
+    return false;
+}
+
+bool Input::isKeyPressed() {
+    if (kbhit()) {
+        return true;
+    }
+    return false;
+}
+

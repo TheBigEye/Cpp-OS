@@ -5,8 +5,8 @@ CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
 RES      = OS_private.res
-OBJ      = main.o System/core/io/soundHandler.o System/utils/timeUtils.o System/utils/consoleUtils.o System/shell/graphicShell.o System/shell/imageShell.o System/shell/screenShell.o System/utils/mathUtils.o System/core/mainKernel.o System/core/mainRender.o $(RES)
-LINKOBJ  = main.o System/core/io/soundHandler.o System/utils/timeUtils.o System/utils/consoleUtils.o System/shell/graphicShell.o System/shell/imageShell.o System/shell/screenShell.o System/utils/mathUtils.o System/core/mainKernel.o System/core/mainRender.o $(RES)
+OBJ      = main.o System/core/mainKernel.o System/core/mainRender.o System/core/io/inputHandler.o System/core/io/soundHandler.o System/programs/command.o System/programs/lines.o System/programs/mesh.o System/programs/stars.o System/shell/graphicShell.o System/shell/imageShell.o System/shell/screenShell.o System/utils/consoleUtils.o System/utils/mathUtils.o System/utils/timeUtils.o $(RES)
+LINKOBJ  = main.o System/core/mainKernel.o System/core/mainRender.o System/core/io/inputHandler.o System/core/io/soundHandler.o System/programs/command.o System/programs/lines.o System/programs/mesh.o System/programs/stars.o System/shell/graphicShell.o System/shell/imageShell.o System/shell/screenShell.o System/utils/consoleUtils.o System/utils/mathUtils.o System/utils/timeUtils.o $(RES)
 LIBS     = -L"F:/Programs and Utilities/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32" -static-libgcc -lwininet -lwinmm -lgdi32 -m32
 INCS     = -I"F:/Programs and Utilities/Dev-Cpp/MinGW64/include" -I"F:/Programs and Utilities/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Programs and Utilities/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"F:/Programs and Utilities/Dev-Cpp/MinGW64/include" -I"F:/Programs and Utilities/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"F:/Programs and Utilities/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"F:/Programs and Utilities/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -28,14 +28,29 @@ $(BIN): $(OBJ)
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
 
+System/core/mainKernel.o: System/core/mainKernel.cpp
+	$(CPP) -c System/core/mainKernel.cpp -o System/core/mainKernel.o $(CXXFLAGS)
+
+System/core/mainRender.o: System/core/mainRender.cpp
+	$(CPP) -c System/core/mainRender.cpp -o System/core/mainRender.o $(CXXFLAGS)
+
+System/core/io/inputHandler.o: System/core/io/inputHandler.cpp
+	$(CPP) -c System/core/io/inputHandler.cpp -o System/core/io/inputHandler.o $(CXXFLAGS)
+
 System/core/io/soundHandler.o: System/core/io/soundHandler.cpp
 	$(CPP) -c System/core/io/soundHandler.cpp -o System/core/io/soundHandler.o $(CXXFLAGS)
 
-System/utils/timeUtils.o: System/utils/timeUtils.cpp
-	$(CPP) -c System/utils/timeUtils.cpp -o System/utils/timeUtils.o $(CXXFLAGS)
+System/programs/command.o: System/programs/command.cpp
+	$(CPP) -c System/programs/command.cpp -o System/programs/command.o $(CXXFLAGS)
 
-System/utils/consoleUtils.o: System/utils/consoleUtils.cpp
-	$(CPP) -c System/utils/consoleUtils.cpp -o System/utils/consoleUtils.o $(CXXFLAGS)
+System/programs/lines.o: System/programs/lines.cpp
+	$(CPP) -c System/programs/lines.cpp -o System/programs/lines.o $(CXXFLAGS)
+
+System/programs/mesh.o: System/programs/mesh.cpp
+	$(CPP) -c System/programs/mesh.cpp -o System/programs/mesh.o $(CXXFLAGS)
+
+System/programs/stars.o: System/programs/stars.cpp
+	$(CPP) -c System/programs/stars.cpp -o System/programs/stars.o $(CXXFLAGS)
 
 System/shell/graphicShell.o: System/shell/graphicShell.cpp
 	$(CPP) -c System/shell/graphicShell.cpp -o System/shell/graphicShell.o $(CXXFLAGS)
@@ -46,14 +61,14 @@ System/shell/imageShell.o: System/shell/imageShell.cpp
 System/shell/screenShell.o: System/shell/screenShell.cpp
 	$(CPP) -c System/shell/screenShell.cpp -o System/shell/screenShell.o $(CXXFLAGS)
 
+System/utils/consoleUtils.o: System/utils/consoleUtils.cpp
+	$(CPP) -c System/utils/consoleUtils.cpp -o System/utils/consoleUtils.o $(CXXFLAGS)
+
 System/utils/mathUtils.o: System/utils/mathUtils.cpp
 	$(CPP) -c System/utils/mathUtils.cpp -o System/utils/mathUtils.o $(CXXFLAGS)
 
-System/core/mainKernel.o: System/core/mainKernel.cpp
-	$(CPP) -c System/core/mainKernel.cpp -o System/core/mainKernel.o $(CXXFLAGS)
-
-System/core/mainRender.o: System/core/mainRender.cpp
-	$(CPP) -c System/core/mainRender.cpp -o System/core/mainRender.o $(CXXFLAGS)
+System/utils/timeUtils.o: System/utils/timeUtils.cpp
+	$(CPP) -c System/utils/timeUtils.cpp -o System/utils/timeUtils.o $(CXXFLAGS)
 
 OS_private.res: OS_private.rc 
 	$(WINDRES) -i OS_private.rc -F pe-i386 --input-format=rc -o OS_private.res -O coff 
