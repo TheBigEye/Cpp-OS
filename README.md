@@ -57,7 +57,7 @@
 
 <!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-**Cpp OS** is an operating system simulator written in C++, was inspired by MS-DOS and the first versions of Windows, have a graphical interface using GDI and the Windows API without using third-party libraries
+**Cpp OS** is an operating system simulator written in C++, was inspired by MS-DOS and the first versions of Windows, have a Text based UI, and Graphical interface using GDI and the Windows API without using third-party libraries
 
 This was originally developed as a small project to learn the capabilities of Windows API and Console Applications in C++, it is currently under development :)
 ## Features
