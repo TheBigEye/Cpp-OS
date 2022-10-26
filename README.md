@@ -63,7 +63,7 @@ This was originally developed as a small project to learn the capabilities of Wi
 ## Features
 
 #### Text Based Shell:
-- Command prompt shell.
+- Command prompt shell (type `help`).
 - A little taskbar with some realtime information, with a clock and dynamic internet icon.
 
 #### Programs:
