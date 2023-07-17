@@ -5,13 +5,13 @@
     <a href="https://github.com/TheBigEye#gh-light-mode-only"> <!-- light mode -->
         <img
             width="100%"
-            src="https://github.com/TheBigEye/TheBigEye/blob/main/Projects/Cpp-OS/Light-header.svg?raw=true" alt="Light mode Cpp OS logo!"
+            src="https://github.com/TheBigEye/TheBigEye/blob/main/assets/projects/Cpp-OS/Light-header.svg?raw=true" alt="Light mode Cpp OS logo!"
         />
     </a>
     <a href="https://github.com/TheBigEye#gh-dark-mode-only"> <!-- dark mode -->
         <img
             width="100%"
-            src="https://github.com/TheBigEye/TheBigEye/blob/main/Projects/Cpp-OS/Dark-header.svg?raw=true" alt="Dark mode Cpp OS logo!!"
+            src="https://github.com/TheBigEye/TheBigEye/blob/main/assets/projects/Cpp-OS/Dark-header.svg?raw=true" alt="Dark mode Cpp OS logo!!"
         />
     </a>
 </p>
